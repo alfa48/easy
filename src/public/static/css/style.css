@@ -1,0 +1,42 @@
+body {
+  font-family: 'Ubuntu', sans-serif;
+  background: #f8f9fa;
+}
+#listaNotas {
+  display: grid;
+  gap: 1rem;
+}
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: .4rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,.05);
+  position: relative;
+
+  
+}
+.card-icons {
+  position: absolute;
+  top: .4rem;
+  right: .4rem;
+  display: flex;
+  gap: .4rem;
+}
+.card-icons svg {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  color: #555;
+  transition: color .2s;
+}
+.card-icons svg:hover {
+  color: #e03e3e;
+}
+.card p {
+  margin-top: .5rem;
+  white-space: pre-wrap;
+}
+.modal-container {
+  max-width: 320px;
+}

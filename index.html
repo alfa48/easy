@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notas</title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/public/static/css/style.css" />
+</head>
+
+<body class="p-2">
+
+    <div class="container grid-lg">
+        <!-- Header será carregado dinamicamente -->
+        <div id="header"></div>
+
+        <div class="form-group">
+            <textarea id="notaInput" class="form-input" placeholder="Escreve uma nota..." rows="3"></textarea>
+            <button id="btnSalvar" class="btn btn-primary mt-1">Salvar</button>
+        </div>
+
+        <div id="listaNotas" class="mt-2 grid-md"></div>
+    </div>
+
+
+
+    <!-- Modal de Confirmação -->
+    <div class="modal" id="modalConfirm">
+        <a href="#close" class="modal-overlay" aria-label="Fechar"></a>
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title h5">Confirmar exclusão</div>
+            </div>
+            <div class="modal-body">
+                <p>Tens certeza que queres apagar esta nota?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btnConfirmar" class="btn btn-error">Apagar</button>
+                <button id="btnCancelar" class="btn btn-link">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="footer"></div>
+    <!-- Firebase -->
+    <script type="module" src="./src/core/app.js"></script>
+</body>
+
+</html>
