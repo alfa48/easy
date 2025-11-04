@@ -1,6 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { 
-  getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc 
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+  updateDoc,
 } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 // Configuração Firebase (substitui pelos teus dados)
@@ -10,9 +16,8 @@ const firebaseConfig = {
   projectId: "easy-5027a",
   storageBucket: "easy-5027a.firebasestorage.app",
   messagingSenderId: "284914046801", // Obtenha este ID após registrar seu app no Firebase Console
-  appId: "1:284914046801:web:60a0f029f11cfa0e1f6570" // Obtenha este ID após registrar seu app no Firebase Console
+  appId: "1:284914046801:web:60a0f029f11cfa0e1f6570", // Obtenha este ID após registrar seu app no Firebase Console
 };
-
 
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
@@ -25,6 +30,7 @@ const listaNotas = document.getElementById("listaNotas");
 const modalConfirm = document.getElementById("modalConfirm");
 const btnConfirmar = document.getElementById("btnConfirmar");
 const btnCancelar = document.getElementById("btnCancelar");
+const loading = document.getElementById("loading");
 
 let editandoId = null;
 let apagarId = null;
@@ -40,10 +46,11 @@ async function carregarFragment(id, arquivo) {
 carregarFragment("header", "./src/public/static/fragments/header.html");
 carregarFragment("footer", "./src/public/static/fragments/footer.html");
 
-
 // Salvar ou atualizar nota
 async function salvarNota() {
   const texto = notaInput.value.trim();
+  loading.style.display = "inline-block";
+
   if (!texto) return;
 
   if (editandoId) {
@@ -53,9 +60,13 @@ async function salvarNota() {
     btnSalvar.textContent = "Salvar";
   } else {
     // Criar nova
-    await addDoc(collection(db, "notas"), { texto, data: new Date().toISOString() });
+    await addDoc(collection(db, "notas"), {
+      texto,
+      data: new Date().toISOString(),
+    });
   }
 
+  loading.style.display = "none";
   notaInput.value = "";
   carregarNotas();
 }
@@ -65,7 +76,7 @@ async function carregarNotas() {
   listaNotas.innerHTML = "";
   const querySnapshot = await getDocs(collection(db, "notas"));
 
-  querySnapshot.forEach(docSnap => {
+  querySnapshot.forEach((docSnap) => {
     const nota = docSnap.data();
     const card = document.createElement("div");
     card.className = "card";
@@ -98,11 +109,13 @@ async function carregarNotas() {
 
 // Confirma exclusão
 btnConfirmar.addEventListener("click", async () => {
+  loading.style.display = "inline-block";
   if (apagarId) {
     await deleteDoc(doc(db, "notas", apagarId));
     apagarId = null;
     modalConfirm.classList.remove("active");
     carregarNotas();
+    loading.style.display = "none";
   }
 });
 

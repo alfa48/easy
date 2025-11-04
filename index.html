@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Notas</title>
+    <title>Easy</title>
+    <link rel="icon" href="./src/public/static/imgs/logo_.png" type="image/png">
+
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./src/public/static/css/style.css" />
 </head>
 
 <body class="p-2">
+
 
     <div class="container grid-lg">
         <!-- Header será carregado dinamicamente -->
@@ -19,6 +22,11 @@
         <div class="form-group">
             <textarea id="notaInput" class="form-input" placeholder="Escreve uma nota..." rows="3"></textarea>
             <button id="btnSalvar" class="btn btn-primary mt-1">Salvar</button>
+        </div>
+
+        <div class="text-center">
+            <!-- Loading -->
+            <div id="loading" style="display: none;" class="loading loading-lg"></div>
         </div>
 
         <div id="listaNotas" class="mt-2 grid-md"></div>
