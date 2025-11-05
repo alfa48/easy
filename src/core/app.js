@@ -97,7 +97,7 @@ async function carregarNotas() {
       notaInput.focus();
     });
 
-    // 🗑️ Apagar (abre modal)
+    // Apagar (abre modal)
     card.querySelector(".delete-icon").addEventListener("click", () => {
       apagarId = docSnap.id;
       modalConfirm.classList.add("active");
